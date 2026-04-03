@@ -240,9 +240,9 @@ export function AIAnalysis() {
   conclusions.push({
     section: "AMF",
     text: amfStresses.includes("red")
-      ? "O Anexo de Metas Fiscais apresenta distorções significativas que comprometem a credibilidade das projeções. Recomenda-se revisão das premissas de receita e reavaliação da trajetória de despesas."
+      ? "O Anexo de Metas Fiscais sugere distorções que podem comprometer a credibilidade das projeções. Recomenda-se revisão das premissas de receita e reavaliação da trajetória de despesas."
       : amfStresses.includes("yellow")
-      ? "As projeções do AMF estão dentro de parâmetros aceitáveis, porém alguns itens apresentam variações que merecem acompanhamento. A margem de segurança é reduzida."
+      ? "As projeções do AMF estão dentro de parâmetros aceitáveis, porém alguns itens sugerem variações que merecem acompanhamento. A margem de segurança tende a ser reduzida."
       : "O AMF apresenta consistência nas projeções, com trajetória fiscal equilibrada e premissas compatíveis com o histórico recente.",
   });
 
