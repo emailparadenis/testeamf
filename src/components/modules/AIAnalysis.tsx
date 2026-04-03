@@ -1,6 +1,7 @@
 import { useFiscalData } from "@/contexts/FiscalDataContext";
 import { Brain, AlertTriangle, TrendingUp, Info, Shield, ShieldAlert, ShieldCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { CheckCircle } from "lucide-react";
 import { NotePopover } from "@/components/NotePopover";
 
 function formatBi(val: number) {
