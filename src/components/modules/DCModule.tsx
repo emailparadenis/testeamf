@@ -19,6 +19,14 @@ export function DCModule() {
   const { data } = useFiscalData();
   const { dc } = data;
 
+  if (!data.loaded) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[40vh] text-muted-foreground">
+        <p className="text-sm">Carregue um arquivo Excel para visualizar a Dívida Consolidada.</p>
+      </div>
+    );
+  }
+
   const dcRow = dc.find((r) => r.item.includes("DÍVIDA CONSOLIDADA - DC"));
   const deducoes = dc.find((r) => r.item.includes("DEDUÇÕES"));
   const dcl = dc.find((r) => r.item.includes("DÍVIDA CONSOLIDADA LÍQUIDA"));
