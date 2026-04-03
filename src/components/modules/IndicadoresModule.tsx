@@ -50,7 +50,7 @@ export function IndicadoresModule() {
             <PiggyBank className="h-4 w-4 text-chart-positive" />
           </div>
           <p className="text-xl font-bold">{formatCurrency(resultadoPrimario)}</p>
-          <p className="text-xs text-chart-positive mt-1">Superávit</p>
+          <p className="text-xs text-chart-positive mt-1">Projeção 2026</p>
         </div>
         <div className="stat-card">
           <div className="flex items-center justify-between mb-3">
