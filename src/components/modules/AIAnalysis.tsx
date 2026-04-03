@@ -284,11 +284,11 @@ export function AIAnalysis() {
       if (dclChange > 5 && dcChange <= 2 && caixaChange < -5) {
         lines.push({
           label: "Risco de Liquidez",
-          detail: `A DCL piorou ${dclChange.toFixed(1)}% enquanto a dívida bruta variou apenas ${dcChange.toFixed(1)}%. A deterioração decorre de queda de caixa (${caixaChange.toFixed(1)}%). Risco de liquidez e deterioração da posição financeira líquida.`,
+          detail: `A DCL piorou ${dclChange.toFixed(1)}% enquanto a dívida bruta variou apenas ${dcChange.toFixed(1)}%. A deterioração sugere queda de caixa (${caixaChange.toFixed(1)}%). Indica possível risco de liquidez e deterioração da posição financeira líquida.`,
           stress: "red",
           source: "dc",
         });
-        vulnerabilities.push("Risco de liquidez: piora da DCL por queda de caixa, não por aumento de dívida bruta.");
+        vulnerabilities.push("Possível risco de liquidez: piora da DCL sugere queda de caixa, e não aumento de dívida bruta.");
       }
     }
   }
