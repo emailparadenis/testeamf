@@ -168,9 +168,9 @@ export function AIAnalysis() {
   conclusions.push({
     section: "Indicadores Fiscais",
     text: indStresses.includes("red")
-      ? "Os indicadores fiscais revelam sinais de estresse. A despesa com pessoal e/ou rigidez orçamentária estão em nível preocupante. Medidas de ajuste são necessárias para evitar descumprimento dos limites da LRF."
+      ? "Os indicadores fiscais sugerem sinais de estresse. A despesa com pessoal e/ou rigidez orçamentária encontram-se em nível que merece atenção. Medidas de ajuste podem ser necessárias para evitar descumprimento dos limites da LRF."
       : indStresses.includes("yellow")
-      ? "Os indicadores estão dentro dos limites legais, mas a margem de segurança é reduzida. Monitoramento contínuo e planejamento de contingência são recomendados."
+      ? "Os indicadores estão dentro dos limites legais, mas a margem de segurança tende a ser reduzida. Monitoramento contínuo e planejamento de contingência são recomendados."
       : "Os indicadores fiscais estão em patamar saudável, indicando equilíbrio fiscal e espaço para gestão.",
   });
 
