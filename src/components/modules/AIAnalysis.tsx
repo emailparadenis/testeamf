@@ -141,7 +141,7 @@ export function AIAnalysis() {
     const endStress: StressLevel = last.endividamento > LIMITES.endividamento ? "red" : last.endividamento > 150 ? "yellow" : "green";
     lines.push({
       label: `Endividamento DCL/RCL (${last.periodo})`,
-      detail: `Índice de ${last.endividamento.toFixed(2)}% da RCL. Referência do Senado Federal: ${LIMITES.endividamento}%. ${endStress === "red" ? "Acima do limite de referência. Situação de risco fiscal elevado." : endStress === "yellow" ? "Abaixo do limite, mas trajetória requer monitoramento." : "Dentro de parâmetros seguros."}`,
+      detail: `Índice de ${last.endividamento.toFixed(2)}% da RCL. Referência do Senado Federal: ${LIMITES.endividamento}%. ${endStress === "red" ? "Acima do limite de referência. Sugere risco fiscal elevado." : endStress === "yellow" ? "Abaixo do limite, mas trajetória requer monitoramento." : "Dentro de parâmetros seguros."}`,
       stress: endStress,
       source: "indicadores",
     });
