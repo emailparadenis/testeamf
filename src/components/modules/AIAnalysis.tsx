@@ -160,7 +160,7 @@ export function AIAnalysis() {
       }
     }
   } else {
-    limitations.push("Dados insuficientes de indicadores fiscais para análise de trajetória (mínimo 2 períodos).");
+    limitations.push("Dados de indicadores fiscais insuficientes para análise de trajetória (mínimo 2 períodos).");
   }
 
   // Indicadores Conclusion
