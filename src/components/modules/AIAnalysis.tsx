@@ -129,7 +129,7 @@ export function AIAnalysis() {
     const dcrcStress: StressLevel = last.despCorrentesRecCorrente >= LIMITES.despCorrentesRecCorrente ? "red" : last.despCorrentesRecCorrente >= 90 ? "yellow" : "green";
     lines.push({
       label: `Desp. Correntes/Rec. Correntes (${last.periodo})`,
-      detail: `Relação de ${last.despCorrentesRecCorrente.toFixed(2)}% (limite de referência: ${LIMITES.despCorrentesRecCorrente}%). ${dcrcStress === "red" ? "Comprometimento crítico da receita corrente com despesas obrigatórias. Risco de compressão da poupança corrente e impossibilidade de financiar investimentos." : dcrcStress === "yellow" ? "Proximidade do limite de 95%. Margem de expansão fiscal limitada. Rigidez orçamentária elevada." : "Dentro de parâmetros aceitáveis. Existe margem para investimento e despesas discricionárias."}`,
+      detail: `Relação de ${last.despCorrentesRecCorrente.toFixed(2)}% (limite de referência: ${LIMITES.despCorrentesRecCorrente}%). ${dcrcStress === "red" ? "Comprometimento elevado da receita corrente com despesas obrigatórias. Sugere risco de compressão da poupança corrente e possível dificuldade para financiar investimentos." : dcrcStress === "yellow" ? "Proximidade do limite de 95%. Margem de expansão fiscal tende a ser limitada. Rigidez orçamentária elevada." : "Dentro de parâmetros aceitáveis. Existe margem para investimento e despesas discricionárias."}`,
       stress: dcrcStress,
       source: "indicadores",
     });
