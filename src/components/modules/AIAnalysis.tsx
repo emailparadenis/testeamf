@@ -329,9 +329,9 @@ export function AIAnalysis() {
   conclusions.push({
     section: "Dívida Consolidada",
     text: dcStresses.includes("red")
-      ? "A Dívida Consolidada apresenta sinais de estresse estrutural. A trajetória de endividamento e/ou a posição de caixa indicam vulnerabilidade fiscal que demanda ação corretiva."
+      ? "A Dívida Consolidada sugere sinais de estresse estrutural. A trajetória de endividamento e/ou a posição de caixa indicam vulnerabilidade fiscal que pode demandar ação corretiva."
       : dcStresses.includes("yellow")
-      ? "O perfil de endividamento está dentro dos limites legais, porém apresenta pontos de atenção que requerem acompanhamento contínuo, especialmente precatórios e disponibilidades."
+      ? "O perfil de endividamento está dentro dos limites legais, porém há pontos de atenção que merecem acompanhamento contínuo, especialmente precatórios e disponibilidades."
       : "Perfil de endividamento saudável, com dívida em trajetória controlada e liquidez adequada.",
   });
 
