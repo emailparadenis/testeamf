@@ -48,7 +48,7 @@ function StressBadge({ level, justified }: { level: StressLevel; justified?: boo
 }
 
 export function AIAnalysis() {
-  const { data } = useFiscalData();
+  const { data, notes } = useFiscalData();
   const { amf, indicadores, dc } = data;
 
   if (!data.loaded) {
