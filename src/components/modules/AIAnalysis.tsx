@@ -262,7 +262,7 @@ export function AIAnalysis() {
         label: "Dívida Consolidada Bruta",
         detail: trend
           ? `Trajetória de queda entre ${lastYears[0]} e ${lastYears[lastYears.length - 1]} (${formatBi(dcRow.valores[lastYears[0]])} → ${formatBi(dcRow.valores[lastYears[lastYears.length - 1]])}). Indicador positivo de sustentabilidade fiscal.`
-          : `Trajetória de alta entre ${lastYears[0]} e ${lastYears[lastYears.length - 1]} (${formatBi(dcRow.valores[lastYears[0]])} → ${formatBi(dcRow.valores[lastYears[lastYears.length - 1]])}). Exige atenção quanto à capacidade de pagamento.`,
+          : `Trajetória de alta entre ${lastYears[0]} e ${lastYears[lastYears.length - 1]} (${formatBi(dcRow.valores[lastYears[0]])} → ${formatBi(dcRow.valores[lastYears[lastYears.length - 1]])}). Sugere atenção quanto à capacidade de pagamento.`,
         stress,
         source: "dc",
       });
