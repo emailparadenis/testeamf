@@ -104,7 +104,7 @@ export function AIAnalysis() {
 
     if (last.despesaPessoal >= LIMITES.pessoalMaximo) {
       despPesStress = "red";
-      despPesDetail = `Acima do limite máximo de ${LIMITES.pessoalMaximo}%. Situação crítica que exige medidas imediatas de contenção.`;
+      despPesDetail = `Acima do limite máximo de ${LIMITES.pessoalMaximo}%. Situação que indica necessidade de medidas de contenção.`;
     } else if (last.despesaPessoal >= LIMITES.pessoalPrudencial) {
       despPesStress = "red";
       despPesDetail = `Acima do limite prudencial de ${LIMITES.pessoalPrudencial}% e abaixo do máximo de ${LIMITES.pessoalMaximo}%. Vedações automáticas da LRF podem se aplicar.`;
@@ -129,7 +129,7 @@ export function AIAnalysis() {
     const dcrcStress: StressLevel = last.despCorrentesRecCorrente >= LIMITES.despCorrentesRecCorrente ? "red" : last.despCorrentesRecCorrente >= 90 ? "yellow" : "green";
     lines.push({
       label: `Desp. Correntes/Rec. Correntes (${last.periodo})`,
-      detail: `Relação de ${last.despCorrentesRecCorrente.toFixed(2)}% (limite de referência: ${LIMITES.despCorrentesRecCorrente}%). ${dcrcStress === "red" ? "Comprometimento crítico da receita corrente com despesas obrigatórias. Risco de compressão da poupança corrente e impossibilidade de financiar investimentos." : dcrcStress === "yellow" ? "Proximidade do limite de 95%. Margem de expansão fiscal limitada. Rigidez orçamentária elevada." : "Dentro de parâmetros aceitáveis. Existe margem para investimento e despesas discricionárias."}`,
+      detail: `Relação de ${last.despCorrentesRecCorrente.toFixed(2)}% (limite de referência: ${LIMITES.despCorrentesRecCorrente}%). ${dcrcStress === "red" ? "Comprometimento elevado da receita corrente com despesas obrigatórias. Sugere risco de compressão da poupança corrente e possível dificuldade para financiar investimentos." : dcrcStress === "yellow" ? "Proximidade do limite de 95%. Margem de expansão fiscal tende a ser limitada. Rigidez orçamentária elevada." : "Dentro de parâmetros aceitáveis. Existe margem para investimento e despesas discricionárias."}`,
       stress: dcrcStress,
       source: "indicadores",
     });
@@ -141,7 +141,7 @@ export function AIAnalysis() {
     const endStress: StressLevel = last.endividamento > LIMITES.endividamento ? "red" : last.endividamento > 150 ? "yellow" : "green";
     lines.push({
       label: `Endividamento DCL/RCL (${last.periodo})`,
-      detail: `Índice de ${last.endividamento.toFixed(2)}% da RCL. Referência do Senado Federal: ${LIMITES.endividamento}%. ${endStress === "red" ? "Acima do limite de referência. Situação de risco fiscal elevado." : endStress === "yellow" ? "Abaixo do limite, mas trajetória requer monitoramento." : "Dentro de parâmetros seguros."}`,
+      detail: `Índice de ${last.endividamento.toFixed(2)}% da RCL. Referência do Senado Federal: ${LIMITES.endividamento}%. ${endStress === "red" ? "Acima do limite de referência. Sugere risco fiscal elevado." : endStress === "yellow" ? "Abaixo do limite, mas trajetória requer monitoramento." : "Dentro de parâmetros seguros."}`,
       stress: endStress,
       source: "indicadores",
     });
@@ -160,7 +160,7 @@ export function AIAnalysis() {
       }
     }
   } else {
-    limitations.push("Dados insuficientes de indicadores fiscais para análise de trajetória (mínimo 2 períodos).");
+    limitations.push("Dados de indicadores fiscais insuficientes para análise de trajetória (mínimo 2 períodos).");
   }
 
   // Indicadores Conclusion
@@ -168,9 +168,9 @@ export function AIAnalysis() {
   conclusions.push({
     section: "Indicadores Fiscais",
     text: indStresses.includes("red")
-      ? "Os indicadores fiscais revelam sinais de estresse. A despesa com pessoal e/ou rigidez orçamentária estão em nível preocupante. Medidas de ajuste são necessárias para evitar descumprimento dos limites da LRF."
+      ? "Os indicadores fiscais sugerem sinais de estresse. A despesa com pessoal e/ou rigidez orçamentária encontram-se em nível que merece atenção. Medidas de ajuste podem ser necessárias para evitar descumprimento dos limites da LRF."
       : indStresses.includes("yellow")
-      ? "Os indicadores estão dentro dos limites legais, mas a margem de segurança é reduzida. Monitoramento contínuo e planejamento de contingência são recomendados."
+      ? "Os indicadores estão dentro dos limites legais, mas a margem de segurança tende a ser reduzida. Monitoramento contínuo e planejamento de contingência são recomendados."
       : "Os indicadores fiscais estão em patamar saudável, indicando equilíbrio fiscal e espaço para gestão.",
   });
 
@@ -206,7 +206,7 @@ export function AIAnalysis() {
       if (recChange > despChange + 5) {
         lines.push({
           label: `Receita Primária ${years[i]}`,
-          detail: `Crescimento projetado de ${recChange.toFixed(1)}% na receita vs ${despChange.toFixed(1)}% na despesa. Premissa otimista de arrecadação que deve ser monitorada.`,
+          detail: `Crescimento projetado de ${recChange.toFixed(1)}% na receita vs ${despChange.toFixed(1)}% na despesa. Sugere premissa otimista de arrecadação que merece acompanhamento.`,
           stress: "yellow",
           source: "amf",
         });
@@ -227,7 +227,7 @@ export function AIAnalysis() {
         const stress: StressLevel = Math.abs(change) > 30 ? "red" : "yellow";
         lines.push({
           label: row.especificacao,
-          detail: `Variação atípica de ${change.toFixed(1)}% entre ${years[i - 1]} e ${years[i]} (${formatBi(row.valores[years[i - 1]])} → ${formatBi(row.valores[years[i]])}). Variação acima de 10% requer justificativa técnica.`,
+          detail: `Variação atípica de ${change.toFixed(1)}% entre ${years[i - 1]} e ${years[i]} (${formatBi(row.valores[years[i - 1]])} → ${formatBi(row.valores[years[i]])}). Variação acima de 10% sugere necessidade de justificativa técnica.`,
           stress,
           source: "amf",
         });
@@ -240,9 +240,9 @@ export function AIAnalysis() {
   conclusions.push({
     section: "AMF",
     text: amfStresses.includes("red")
-      ? "O Anexo de Metas Fiscais apresenta distorções significativas que comprometem a credibilidade das projeções. Recomenda-se revisão das premissas de receita e reavaliação da trajetória de despesas."
+      ? "O Anexo de Metas Fiscais sugere distorções que podem comprometer a credibilidade das projeções. Recomenda-se revisão das premissas de receita e reavaliação da trajetória de despesas."
       : amfStresses.includes("yellow")
-      ? "As projeções do AMF estão dentro de parâmetros aceitáveis, porém alguns itens apresentam variações que merecem acompanhamento. A margem de segurança é reduzida."
+      ? "As projeções do AMF estão dentro de parâmetros aceitáveis, porém alguns itens sugerem variações que merecem acompanhamento. A margem de segurança tende a ser reduzida."
       : "O AMF apresenta consistência nas projeções, com trajetória fiscal equilibrada e premissas compatíveis com o histórico recente.",
   });
 
@@ -262,7 +262,7 @@ export function AIAnalysis() {
         label: "Dívida Consolidada Bruta",
         detail: trend
           ? `Trajetória de queda entre ${lastYears[0]} e ${lastYears[lastYears.length - 1]} (${formatBi(dcRow.valores[lastYears[0]])} → ${formatBi(dcRow.valores[lastYears[lastYears.length - 1]])}). Indicador positivo de sustentabilidade fiscal.`
-          : `Trajetória de alta entre ${lastYears[0]} e ${lastYears[lastYears.length - 1]} (${formatBi(dcRow.valores[lastYears[0]])} → ${formatBi(dcRow.valores[lastYears[lastYears.length - 1]])}). Exige atenção quanto à capacidade de pagamento.`,
+          : `Trajetória de alta entre ${lastYears[0]} e ${lastYears[lastYears.length - 1]} (${formatBi(dcRow.valores[lastYears[0]])} → ${formatBi(dcRow.valores[lastYears[lastYears.length - 1]])}). Sugere atenção quanto à capacidade de pagamento.`,
         stress,
         source: "dc",
       });
@@ -284,11 +284,11 @@ export function AIAnalysis() {
       if (dclChange > 5 && dcChange <= 2 && caixaChange < -5) {
         lines.push({
           label: "Risco de Liquidez",
-          detail: `A DCL piorou ${dclChange.toFixed(1)}% enquanto a dívida bruta variou apenas ${dcChange.toFixed(1)}%. A deterioração decorre de queda de caixa (${caixaChange.toFixed(1)}%). Risco de liquidez e deterioração da posição financeira líquida.`,
+          detail: `A DCL piorou ${dclChange.toFixed(1)}% enquanto a dívida bruta variou apenas ${dcChange.toFixed(1)}%. A deterioração sugere queda de caixa (${caixaChange.toFixed(1)}%). Indica possível risco de liquidez e deterioração da posição financeira líquida.`,
           stress: "red",
           source: "dc",
         });
-        vulnerabilities.push("Risco de liquidez: piora da DCL por queda de caixa, não por aumento de dívida bruta.");
+        vulnerabilities.push("Possível risco de liquidez: piora da DCL sugere queda de caixa, e não aumento de dívida bruta.");
       }
     }
   }
@@ -304,7 +304,7 @@ export function AIAnalysis() {
       source: "dc",
     });
   } else {
-    limitations.push("A planilha não contém detalhamento de precatórios para análise à luz da EC 136/2025.");
+    limitations.push("Não foi identificado detalhamento de precatórios para análise à luz da EC 136/2025.");
   }
 
   // Disponibilidades de caixa (liquidez)
@@ -317,7 +317,7 @@ export function AIAnalysis() {
       const stress: StressLevel = change < -10 ? "red" : change < 0 ? "yellow" : "green";
       lines.push({
         label: "Disponibilidades de Caixa",
-        detail: `Variação de ${change.toFixed(1)}% entre ${years[years.length - 2]} e ${years[years.length - 1]} (${formatBi(prev)} → ${formatBi(curr)}). ${stress === "red" ? "Deterioração significativa da posição de caixa. Aumento da dívida pode estar sem lastro financeiro." : stress === "yellow" ? "Leve queda na posição de caixa. Monitorar evolução." : "Posição de liquidez compatível com o nível de endividamento."}`,
+        detail: `Variação de ${change.toFixed(1)}% entre ${years[years.length - 2]} e ${years[years.length - 1]} (${formatBi(prev)} → ${formatBi(curr)}). ${stress === "red" ? "Sugere deterioração relevante da posição de caixa. Possível fragilidade no lastro financeiro da dívida." : stress === "yellow" ? "Leve queda na posição de caixa. Recomenda-se monitorar evolução." : "Posição de liquidez compatível com o nível de endividamento."}`,
         stress,
         source: "dc",
       });
@@ -329,9 +329,9 @@ export function AIAnalysis() {
   conclusions.push({
     section: "Dívida Consolidada",
     text: dcStresses.includes("red")
-      ? "A Dívida Consolidada apresenta sinais de estresse estrutural. A trajetória de endividamento e/ou a posição de caixa indicam vulnerabilidade fiscal que demanda ação corretiva."
+      ? "A Dívida Consolidada sugere sinais de estresse estrutural. A trajetória de endividamento e/ou a posição de caixa indicam vulnerabilidade fiscal que pode demandar ação corretiva."
       : dcStresses.includes("yellow")
-      ? "O perfil de endividamento está dentro dos limites legais, porém apresenta pontos de atenção que requerem acompanhamento contínuo, especialmente precatórios e disponibilidades."
+      ? "O perfil de endividamento está dentro dos limites legais, porém há pontos de atenção que merecem acompanhamento contínuo, especialmente precatórios e disponibilidades."
       : "Perfil de endividamento saudável, com dívida em trajetória controlada e liquidez adequada.",
   });
 
@@ -377,7 +377,7 @@ export function AIAnalysis() {
           Classificação: <span className={`font-bold ${overall.color}`}>{overall.label}</span>
         </p>
         <p className="text-xs text-foreground/80 leading-relaxed">
-          A análise considera exclusivamente os dados da planilha carregada. {positives.length > 0 ? `Há ${positives.length} ponto(s) positivo(s) identificado(s).` : ""} {vulnerabilities.length > 0 ? `Foram detectados ${vulnerabilities.length} ponto(s) de vulnerabilidade.` : ""} {limitations.length > 0 ? `Existem ${limitations.length} limitação(ões) analítica(s) por insuficiência de dados.` : ""}
+          {positives.length > 0 ? `Foram identificados ${positives.length} ponto(s) positivo(s).` : ""} {vulnerabilities.length > 0 ? `Detectados ${vulnerabilities.length} ponto(s) de vulnerabilidade.` : ""} {limitations.length > 0 ? `Existem ${limitations.length} limitação(ões) analítica(s) por insuficiência de dados.` : ""}
         </p>
       </div>
 
