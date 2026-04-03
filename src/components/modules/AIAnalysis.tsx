@@ -317,7 +317,7 @@ export function AIAnalysis() {
       const stress: StressLevel = change < -10 ? "red" : change < 0 ? "yellow" : "green";
       lines.push({
         label: "Disponibilidades de Caixa",
-        detail: `Variação de ${change.toFixed(1)}% entre ${years[years.length - 2]} e ${years[years.length - 1]} (${formatBi(prev)} → ${formatBi(curr)}). ${stress === "red" ? "Deterioração significativa da posição de caixa. Aumento da dívida pode estar sem lastro financeiro." : stress === "yellow" ? "Leve queda na posição de caixa. Monitorar evolução." : "Posição de liquidez compatível com o nível de endividamento."}`,
+        detail: `Variação de ${change.toFixed(1)}% entre ${years[years.length - 2]} e ${years[years.length - 1]} (${formatBi(prev)} → ${formatBi(curr)}). ${stress === "red" ? "Sugere deterioração relevante da posição de caixa. Possível fragilidade no lastro financeiro da dívida." : stress === "yellow" ? "Leve queda na posição de caixa. Recomenda-se monitorar evolução." : "Posição de liquidez compatível com o nível de endividamento."}`,
         stress,
         source: "dc",
       });
