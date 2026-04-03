@@ -22,9 +22,9 @@ export function AMFModule() {
   }
 
   // Resultado Primário sem RPPS
-  const receitaPrimaria = amf.find((r) => r.especificacao.includes("Receita Primária") && !r.especificacao.includes("RPPS"));
-  const despesaPrimaria = amf.find((r) => r.especificacao.includes("Despesa Primária") && !r.especificacao.includes("RPPS"));
-  const resultadoPrimario = amf.find((r) => r.especificacao.includes("Resultado Primário (SEM RPPS)"));
+  const receitaPrimaria = amf.find((r) => r.especificacao.includes("Receitas Primárias (EXCETO FONTES RPPS) (I)"));
+  const despesaPrimaria = amf.find((r) => r.especificacao.includes("Despesas Primárias (EXCETO FONTES RPPS) (II)"));
+  const resultadoPrimario = amf.find((r) => r.especificacao.includes("Resultado Primário (SEM RPPS)") && r.especificacao.includes("Acima da Linha"));
 
   // Resultado Nominal Abaixo da Linha
   const resultadoNominal = amf.find((r) => r.especificacao.includes("Resultado Nominal") && r.especificacao.toLowerCase().includes("abaixo"));

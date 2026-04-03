@@ -56,9 +56,9 @@ export function AIAnalysis() {
   const conclusions: { section: string; text: string }[] = [];
 
   // ========== AMF ANALYSIS ==========
-  const resPrim = amf.find((r) => r.especificacao.includes("Resultado Primário (SEM RPPS)"));
-  const recPrim = amf.find((r) => r.especificacao.includes("Receita Primária") && !r.especificacao.includes("RPPS"));
-  const despPrim = amf.find((r) => r.especificacao.includes("Despesa Primária") && !r.especificacao.includes("RPPS"));
+  const resPrim = amf.find((r) => r.especificacao.includes("Resultado Primário (SEM RPPS)") && r.especificacao.includes("Acima da Linha"));
+  const recPrim = amf.find((r) => r.especificacao.includes("Receitas Primárias (EXCETO FONTES RPPS) (I)"));
+  const despPrim = amf.find((r) => r.especificacao.includes("Despesas Primárias (EXCETO FONTES RPPS) (II)"));
 
   if (resPrim) {
     const years = Object.keys(resPrim.valores).sort();
