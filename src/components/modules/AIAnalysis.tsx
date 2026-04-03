@@ -322,7 +322,7 @@ export function AIAnalysis() {
               {uniqueLines.map((line, i) => (
                 <tr key={i} className="data-table-row">
                   <td className="p-3">
-                    <StressBadge level={line.stress} />
+                    <StressBadge level={line.stress} justified={!!notes[`ai-${i}`]} />
                   </td>
                   <td className="p-3 text-xs font-medium">{line.label}</td>
                   <td className="p-3 text-xs text-foreground/80 leading-relaxed">{line.detail}</td>
