@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import * as XLSX from "xlsx";
 
 export interface IndicadorRow {
@@ -40,6 +40,17 @@ interface FiscalDataContextType {
   loadFile: (file: File) => Promise<void>;
 }
 
+const STORAGE_KEY_DATA = "fiscal-data";
+const STORAGE_KEY_NOTES = "fiscal-notes";
+
+function loadFromStorage<T>(key: string, fallback: T): T {
+  try {
+    const raw = sessionStorage.getItem(key);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return fallback;
+}
+
 const defaultData: FiscalData = {
   indicadores: [],
   amf: [],
@@ -75,8 +86,17 @@ function parsePercentage(val: any): number {
 }
 
 export const FiscalDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [data, setData] = useState<FiscalData>(defaultData);
-  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [data, setData] = useState<FiscalData>(() => loadFromStorage(STORAGE_KEY_DATA, defaultData));
+  const [notes, setNotes] = useState<Record<string, string>>(() => loadFromStorage(STORAGE_KEY_NOTES, {}));
+
+  // Persist data and notes to sessionStorage
+  useEffect(() => {
+    try { sessionStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(data)); } catch {}
+  }, [data]);
+
+  useEffect(() => {
+    try { sessionStorage.setItem(STORAGE_KEY_NOTES, JSON.stringify(notes)); } catch {}
+  }, [notes]);
 
   const setNote = useCallback((key: string, text: string) => {
     setNotes((prev) => ({ ...prev, [key]: text }));
@@ -139,7 +159,7 @@ export const FiscalDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         valores[String(year)] = parseNumber(row[idx + 1]);
       });
       
-      varCols.forEach((varCol: string, idx: number) => {
+      varCols.forEach((varCol: string) => {
         const colIdx = amfHeaders.indexOf(varCol);
         if (colIdx >= 0) {
           variacoes[String(varCol)] = row[colIdx] != null ? String(row[colIdx]) : "";
@@ -169,6 +189,8 @@ export const FiscalDataProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       dc.push({ item: String(row[0]).trim(), valores });
     }
 
+    // Clear notes on new file load
+    setNotes({});
     setData({ indicadores, amf, dc, dividaConsolidada, resultadoPrimario, loaded: true });
   }, []);
 
