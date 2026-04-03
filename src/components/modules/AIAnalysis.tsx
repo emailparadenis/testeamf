@@ -304,7 +304,7 @@ export function AIAnalysis() {
       source: "dc",
     });
   } else {
-    limitations.push("A planilha não contém detalhamento de precatórios para análise à luz da EC 136/2025.");
+    limitations.push("Não foi identificado detalhamento de precatórios para análise à luz da EC 136/2025.");
   }
 
   // Disponibilidades de caixa (liquidez)
