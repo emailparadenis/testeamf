@@ -227,7 +227,7 @@ export function AIAnalysis() {
         const stress: StressLevel = Math.abs(change) > 30 ? "red" : "yellow";
         lines.push({
           label: row.especificacao,
-          detail: `Variação atípica de ${change.toFixed(1)}% entre ${years[i - 1]} e ${years[i]} (${formatBi(row.valores[years[i - 1]])} → ${formatBi(row.valores[years[i]])}). Variação acima de 10% requer justificativa técnica.`,
+          detail: `Variação atípica de ${change.toFixed(1)}% entre ${years[i - 1]} e ${years[i]} (${formatBi(row.valores[years[i - 1]])} → ${formatBi(row.valores[years[i]])}). Variação acima de 10% sugere necessidade de justificativa técnica.`,
           stress,
           source: "amf",
         });
