@@ -1,6 +1,7 @@
 import { useFiscalData } from "@/contexts/FiscalDataContext";
 import { Brain, AlertTriangle, TrendingUp, Info, Shield, ShieldAlert, ShieldCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { CheckCircle } from "lucide-react";
 import { NotePopover } from "@/components/NotePopover";
 
 function formatBi(val: number) {
@@ -23,7 +24,15 @@ interface AnalysisLine {
   source: "amf" | "dc" | "indicadores";
 }
 
-function StressBadge({ level }: { level: StressLevel }) {
+function StressBadge({ level, justified }: { level: StressLevel; justified?: boolean }) {
+  if (justified) {
+    return (
+      <Badge className="bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30 text-[10px] gap-1 border">
+        <CheckCircle className="h-3 w-3" />
+        Justificado
+      </Badge>
+    );
+  }
   const config = {
     green: { label: "Adequado", className: "bg-chart-positive/15 text-chart-positive border-chart-positive/30", icon: ShieldCheck },
     yellow: { label: "Atenção", className: "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400 border-yellow-500/30", icon: Shield },
@@ -39,7 +48,7 @@ function StressBadge({ level }: { level: StressLevel }) {
 }
 
 export function AIAnalysis() {
-  const { data } = useFiscalData();
+  const { data, notes } = useFiscalData();
   const { amf, indicadores, dc } = data;
 
   if (!data.loaded) {
@@ -313,7 +322,7 @@ export function AIAnalysis() {
               {uniqueLines.map((line, i) => (
                 <tr key={i} className="data-table-row">
                   <td className="p-3">
-                    <StressBadge level={line.stress} />
+                    <StressBadge level={line.stress} justified={!!notes[`ai-${i}`]} />
                   </td>
                   <td className="p-3 text-xs font-medium">{line.label}</td>
                   <td className="p-3 text-xs text-foreground/80 leading-relaxed">{line.detail}</td>
