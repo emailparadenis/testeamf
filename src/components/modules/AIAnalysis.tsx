@@ -104,7 +104,7 @@ export function AIAnalysis() {
 
     if (last.despesaPessoal >= LIMITES.pessoalMaximo) {
       despPesStress = "red";
-      despPesDetail = `Acima do limite máximo de ${LIMITES.pessoalMaximo}%. Situação crítica que exige medidas imediatas de contenção.`;
+      despPesDetail = `Acima do limite máximo de ${LIMITES.pessoalMaximo}%. Situação que indica necessidade de medidas de contenção.`;
     } else if (last.despesaPessoal >= LIMITES.pessoalPrudencial) {
       despPesStress = "red";
       despPesDetail = `Acima do limite prudencial de ${LIMITES.pessoalPrudencial}% e abaixo do máximo de ${LIMITES.pessoalMaximo}%. Vedações automáticas da LRF podem se aplicar.`;
