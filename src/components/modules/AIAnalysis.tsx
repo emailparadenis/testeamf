@@ -377,7 +377,7 @@ export function AIAnalysis() {
           Classificação: <span className={`font-bold ${overall.color}`}>{overall.label}</span>
         </p>
         <p className="text-xs text-foreground/80 leading-relaxed">
-          A análise considera exclusivamente os dados da planilha carregada. {positives.length > 0 ? `Há ${positives.length} ponto(s) positivo(s) identificado(s).` : ""} {vulnerabilities.length > 0 ? `Foram detectados ${vulnerabilities.length} ponto(s) de vulnerabilidade.` : ""} {limitations.length > 0 ? `Existem ${limitations.length} limitação(ões) analítica(s) por insuficiência de dados.` : ""}
+          {positives.length > 0 ? `Foram identificados ${positives.length} ponto(s) positivo(s).` : ""} {vulnerabilities.length > 0 ? `Detectados ${vulnerabilities.length} ponto(s) de vulnerabilidade.` : ""} {limitations.length > 0 ? `Existem ${limitations.length} limitação(ões) analítica(s) por insuficiência de dados.` : ""}
         </p>
       </div>
 
