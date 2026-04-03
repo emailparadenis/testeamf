@@ -206,7 +206,7 @@ export function AIAnalysis() {
       if (recChange > despChange + 5) {
         lines.push({
           label: `Receita Primária ${years[i]}`,
-          detail: `Crescimento projetado de ${recChange.toFixed(1)}% na receita vs ${despChange.toFixed(1)}% na despesa. Premissa otimista de arrecadação que deve ser monitorada.`,
+          detail: `Crescimento projetado de ${recChange.toFixed(1)}% na receita vs ${despChange.toFixed(1)}% na despesa. Sugere premissa otimista de arrecadação que merece acompanhamento.`,
           stress: "yellow",
           source: "amf",
         });
