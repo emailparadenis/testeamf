@@ -365,7 +365,7 @@ export function AIAnalysis() {
           <Brain className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Análise Fiscal Automatizada</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Gestão Fiscal Inteligente</h2>
           <p className="text-sm text-muted-foreground">Metas, Dívida, Liquidez e Sustentabilidade</p>
         </div>
       </div>
