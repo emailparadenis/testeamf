@@ -24,7 +24,15 @@ interface AnalysisLine {
   source: "amf" | "dc" | "indicadores";
 }
 
-function StressBadge({ level }: { level: StressLevel }) {
+function StressBadge({ level, justified }: { level: StressLevel; justified?: boolean }) {
+  if (justified) {
+    return (
+      <Badge className="bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30 text-[10px] gap-1 border">
+        <CheckCircle className="h-3 w-3" />
+        Justificado
+      </Badge>
+    );
+  }
   const config = {
     green: { label: "Adequado", className: "bg-chart-positive/15 text-chart-positive border-chart-positive/30", icon: ShieldCheck },
     yellow: { label: "Atenção", className: "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400 border-yellow-500/30", icon: Shield },
